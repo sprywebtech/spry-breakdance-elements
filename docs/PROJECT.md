@@ -22,7 +22,7 @@ These identifiers should remain stable. Changing them can create duplicate plugi
 
 Current element:
 
-- `elements/FlipBox/` — responsive two-sided content card with configurable content, appearance, button, direction, duration, and perspective. It supports pointer hover, keyboard focus, touch-oriented focus behavior, and reduced motion without custom JavaScript.
+- `elements/Flip_Box/` — responsive two-sided content card with configurable content, appearance, button, direction, duration, and perspective. It supports pointer hover, keyboard focus, touch-oriented focus behavior, and reduced motion without custom JavaScript.
 
 ## Product principles
 
@@ -54,6 +54,7 @@ Use the same element slug in element-specific JavaScript identifiers, data attri
 - Future work should normally use focused branches and draft pull requests.
 - A distributable ZIP contains the plugin directory as its single top-level folder.
 - Automatic WordPress updates from GitHub are not enabled. Treat that as a separate future feature requiring an explicit design and security decision.
+- Element Studio-generated directory names are canonical. Never retain a former directory beside a newly generated directory when both register the same class.
 
 ## Compatibility policy
 
