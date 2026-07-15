@@ -17,6 +17,8 @@ Before changing code, read this file, `README.md`, `CHANGELOG.md`, and `docs/PRO
 - A typical element contains `element.php`, `html.twig`, `css.twig`, and `default.css`.
 - Use the PHP namespace `SpryWebTechBreakdanceElements`.
 - Give every element a unique PHP class, Breakdance registration name, CSS block prefix, and stable public identity.
+- Derive CSS identifiers from the element's kebab-case slug. Use `swt-bde-<element-slug>` for the Breakdance root class and `swt-<element-slug>__<part>` for internal BEM classes. For example, Testimonial Slider uses `swt-bde-testimonial-slider`, `swt-testimonial-slider__slide`, and `swt-testimonial-slider__controls`.
+- Never reuse a generic internal prefix across elements. Element-specific JavaScript identifiers, data attributes, and CSS custom properties must also include the element slug when they are introduced.
 - Keep element-specific code inside its element directory. Put genuinely shared code in a clearly named top-level directory only after at least two elements need it.
 - Do not add a separate WordPress plugin for an individual element.
 
@@ -24,7 +26,7 @@ Before changing code, read this file, `README.md`, `CHANGELOG.md`, and `docs/PRO
 
 - Preserve existing element class names, property paths, defaults, and generated markup unless a documented migration is included. Client sites may store these values.
 - Prefer Breakdance controls and Twig/CSS templates over custom JavaScript. Add JavaScript only when the interaction cannot be implemented robustly without it.
-- Scope front-end selectors beneath the element selector and use an element-specific prefix such as `swt-flip-box__`.
+- Scope front-end selectors beneath the element selector and follow the element-specific prefix convention above.
 - Avoid global CSS, generic selectors, and dependencies on a client theme.
 - Make controls understandable, grouped logically, and supplied with sensible defaults.
 - Support narrow containers and common mobile breakpoints without requiring client-specific CSS.
