@@ -1,0 +1,48 @@
+# Spry Breakdance Elements
+
+A reusable WordPress plugin that collects custom Breakdance elements in one place. Install this single plugin on client sites, then update it as new elements are added.
+
+## Included elements
+
+### Flip Box
+
+A responsive, accessible, and customizable two-sided card. It uses CSS Grid to overlap the faces, so it does not depend on absolute positioning or conflict with Breakdance's default `.bde-div` positioning.
+
+## Install
+
+1. In WordPress, go to **Plugins → Add New → Upload Plugin**.
+2. Upload `spry-breakdance-elements.zip`, install it, and activate it.
+3. Open Breakdance and search the Add panel for **Flip Box**. It appears in the **Other** category with an **SWT** badge.
+
+## Flip Box settings
+
+The **Content** tab includes separate front and back content, the optional back button, and an accessibility label.
+
+The **Design** tab includes card dimensions, padding, radius, shadow, face colors, typography sizing, button styling, horizontal or vertical flip direction, duration, and perspective.
+
+## Interaction and responsive behavior
+
+- Pointer devices: flips on hover.
+- Touch devices: tap to focus and flip; tap elsewhere to close.
+- Keyboard: tab to the card and use the CTA normally.
+- Reduced motion: honors the visitor's operating-system preference.
+- Mobile: expands to the available width and scales padding and heading size.
+
+No JavaScript or external dependencies are loaded.
+
+## Compatibility
+
+Built against the current Breakdance Element Studio plugin format. Breakdance must be active for the elements to register.
+
+## Adding another element
+
+1. Create a dedicated PascalCase directory under `elements/`.
+2. Add the element's `element.php`, `html.twig`, `css.twig`, and `default.css` files.
+3. Use the shared `SpryWebTechBreakdanceElements` namespace and a unique element class.
+4. Bump the plugin version and document the change in `CHANGELOG.md`.
+
+Breakdance discovers every valid element directory through the single save location registered in `plugin.php`, so additional elements do not need their own WordPress plugins.
+
+## License
+
+GPL-2.0-or-later. See `LICENSE`.
