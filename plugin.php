@@ -7,7 +7,7 @@
  * Author URI: https://sprywebtech.com/
  * License: GPLv2 or later
  * Text Domain: spry-breakdance-elements
- * Version: 1.0.0
+ * Version: 1.0.1
  */
 
 namespace SpryWebTechBreakdanceElements;

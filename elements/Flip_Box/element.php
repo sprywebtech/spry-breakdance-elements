@@ -3,13 +3,14 @@
 namespace SpryWebTechBreakdanceElements;
 
 use function Breakdance\Elements\c;
+use function Breakdance\Elements\PresetSections\getPresetSection;
 
 \Breakdance\ElementStudio\registerElementForEditing(
-    'SpryWebTechBreakdanceElements\\Flipbox',
+    'SpryWebTechBreakdanceElements\\FlipBox',
     \Breakdance\Util\getDirectoryPathRelativeToPluginFolder(__DIR__)
 );
 
-class Flipbox extends \Breakdance\Elements\Element
+class FlipBox extends \Breakdance\Elements\Element
 {
     public static function uiIcon()
     {
@@ -57,7 +58,7 @@ class Flipbox extends \Breakdance\Elements\Element
 
     public static function slug()
     {
-        return get_class();
+        return self::class;
     }
 
     public static function template()
@@ -151,7 +152,6 @@ class Flipbox extends \Breakdance\Elements\Element
                 c('max_width', 'Max Width', [], ['type' => 'unit', 'layout' => 'inline'], false, false, []),
                 c('min_height', 'Minimum Height', [], ['type' => 'unit', 'layout' => 'inline'], false, false, []),
                 c('padding', 'Inner Padding', [], ['type' => 'unit', 'layout' => 'inline'], false, false, []),
-                c('radius', 'Corner Radius', [], ['type' => 'unit', 'layout' => 'inline'], false, false, []),
                 c('gap', 'Content Gap', [], ['type' => 'unit', 'layout' => 'inline'], false, false, []),
                 c('text_align', 'Text Alignment', [], [
                     'type' => 'dropdown',
@@ -162,11 +162,12 @@ class Flipbox extends \Breakdance\Elements\Element
                         ['text' => 'Right', 'value' => 'right'],
                     ],
                 ], false, false, []),
-                c('shadow', 'Box Shadow', [], [
-                    'type' => 'text',
-                    'layout' => 'vertical',
-                    'textOptions' => ['multiline' => false],
-                ], false, false, []),
+                getPresetSection(
+                    'EssentialElements\\borders',
+                    'Borders',
+                    'borders',
+                    ['type' => 'popout']
+                ),
             ], ['type' => 'section'], false, false, []),
 
             c('front', 'Front Face', [
@@ -291,6 +292,11 @@ class Flipbox extends \Breakdance\Elements\Element
     public static function experimental()
     {
         return false;
+    }
+
+    public static function availableIn()
+    {
+        return ['breakdance'];
     }
 
     public static function order()

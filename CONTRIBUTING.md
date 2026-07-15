@@ -15,7 +15,7 @@ Read `AGENTS.md`, `docs/PROJECT.md`, the root README, and the changelog. Search 
 
 ## Adding an element
 
-1. Create a PascalCase directory under `elements/`.
+1. Create the element in Element Studio and retain its generated directory name under `elements/`.
 2. Follow the existing element file pattern and shared PHP namespace.
 3. Use `swt-bde-<element-slug>` for the root class and `swt-<element-slug>__<part>` for internal classes so every element has a unique prefix.
 4. Provide sensible default content and design settings.

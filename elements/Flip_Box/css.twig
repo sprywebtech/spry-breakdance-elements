@@ -33,9 +33,8 @@
   min-width: 0;
   min-height: inherit;
   padding: {{ design.card.padding.style }};
+  {{ macros.borders(design.card.borders) }}
   gap: {{ design.card.gap.style }};
-  border-radius: {{ design.card.radius.style }};
-  box-shadow: {{ design.card.shadow }};
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
@@ -82,7 +81,6 @@
 {% endif %}
 
 %%SELECTOR%% .swt-flip-box__stage:focus-visible {
-  border-radius: {{ design.card.radius.style }};
   outline: 3px solid currentColor;
   outline-offset: 5px;
 }
