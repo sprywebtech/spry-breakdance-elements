@@ -17,7 +17,7 @@ Read `AGENTS.md`, `docs/PROJECT.md`, the root README, and the changelog. Search 
 
 1. Create a PascalCase directory under `elements/`.
 2. Follow the existing element file pattern and shared PHP namespace.
-3. Use unique class names and scoped CSS selectors.
+3. Use `swt-bde-<element-slug>` for the root class and `swt-<element-slug>__<part>` for internal classes so every element has a unique prefix.
 4. Provide sensible default content and design settings.
 5. Cover responsive, keyboard, touch, and reduced-motion behavior as applicable.
 6. Document the element in `README.md` and add it under `[Unreleased]` in `CHANGELOG.md`.
