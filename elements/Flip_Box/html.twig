@@ -1,0 +1,47 @@
+<div
+  class="swt-flip-box__stage"
+  tabindex="0"
+  role="group"
+  aria-label="{{ content.accessibility.label }}"
+>
+  <div class="swt-flip-box__inner">
+    <div class="swt-flip-box__face swt-flip-box__front">
+      {% if content.front.eyebrow %}
+        <span class="swt-flip-box__eyebrow">{{ content.front.eyebrow }}</span>
+      {% endif %}
+
+      {% if content.front.title %}
+        <h3 class="swt-flip-box__title">{{ content.front.title }}</h3>
+      {% endif %}
+
+      {% if content.front.text %}
+        <p class="swt-flip-box__text">{{ content.front.text }}</p>
+      {% endif %}
+
+      {% if content.front.hint %}
+        <span class="swt-flip-box__hint">{{ content.front.hint }}</span>
+      {% endif %}
+    </div>
+
+    <div class="swt-flip-box__face swt-flip-box__back">
+      {% if content.back.eyebrow %}
+        <span class="swt-flip-box__eyebrow">{{ content.back.eyebrow }}</span>
+      {% endif %}
+
+      {% if content.back.title %}
+        <h3 class="swt-flip-box__title">{{ content.back.title }}</h3>
+      {% endif %}
+
+      {% if content.back.text %}
+        <p class="swt-flip-box__text">{{ content.back.text }}</p>
+      {% endif %}
+
+      {% if content.back.link_text and content.back.link_url %}
+        <a class="swt-flip-box__button" href="{{ content.back.link_url }}">
+          {{ content.back.link_text }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
