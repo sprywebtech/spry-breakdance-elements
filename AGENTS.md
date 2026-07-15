@@ -1,0 +1,66 @@
+# Spry Breakdance Elements — Agent Instructions
+
+## Mission
+
+Maintain a single, dependable WordPress plugin containing reusable custom elements for Breakdance. Favor clean element boundaries, predictable settings, responsive behavior, accessibility, and safe upgrades across client sites.
+
+Repository: `https://github.com/sprywebtech/spry-breakdance-elements`
+
+## Source of truth
+
+Before changing code, read this file, `README.md`, `CHANGELOG.md`, and `docs/PROJECT.md`, then inspect the current default branch and relevant element directory. Treat repository contents as authoritative; do not rely on a remembered or copied implementation.
+
+## Architecture
+
+- `plugin.php` owns plugin metadata and registers the shared `elements/` save location.
+- Each element lives in its own PascalCase directory under `elements/`.
+- A typical element contains `element.php`, `html.twig`, `css.twig`, and `default.css`.
+- Use the PHP namespace `SpryWebTechBreakdanceElements`.
+- Give every element a unique PHP class, Breakdance registration name, CSS block prefix, and stable public identity.
+- Derive CSS identifiers from the element's kebab-case slug. Use `swt-bde-<element-slug>` for the Breakdance root class and `swt-<element-slug>__<part>` for internal BEM classes. For example, Testimonial Slider uses `swt-bde-testimonial-slider`, `swt-testimonial-slider__slide`, and `swt-testimonial-slider__controls`.
+- Never reuse a generic internal prefix across elements. Element-specific JavaScript identifiers, data attributes, and CSS custom properties must also include the element slug when they are introduced.
+- Keep element-specific code inside its element directory. Put genuinely shared code in a clearly named top-level directory only after at least two elements need it.
+- Do not add a separate WordPress plugin for an individual element.
+
+## Implementation standards
+
+- Preserve existing element class names, property paths, defaults, and generated markup unless a documented migration is included. Client sites may store these values.
+- Prefer Breakdance controls and Twig/CSS templates over custom JavaScript. Add JavaScript only when the interaction cannot be implemented robustly without it.
+- Scope front-end selectors beneath the element selector and follow the element-specific prefix convention above.
+- Avoid global CSS, generic selectors, and dependencies on a client theme.
+- Make controls understandable, grouped logically, and supplied with sensible defaults.
+- Support narrow containers and common mobile breakpoints without requiring client-specific CSS.
+- Preserve keyboard access, visible focus, semantic HTML, reduced-motion preferences, and usable touch behavior.
+- Escape or sanitize dynamic output using the conventions supported by Breakdance and Twig. Never trust raw user input.
+- Do not introduce external runtime dependencies, tracking, remote assets, or network requests without explicit approval.
+- Keep WordPress admin and front-end behavior quiet when Breakdance is inactive; never cause a fatal error merely because Breakdance is unavailable.
+
+## Change workflow
+
+1. Confirm the requested scope and inspect related code and open repository context.
+2. Work on a focused branch named `agent/<short-description>` when a baseline branch exists.
+3. Change only files needed for the request; preserve unrelated user work.
+4. Add an entry under `[Unreleased]` in `CHANGELOG.md` for user-visible changes.
+5. Apply semantic versioning when preparing a distributable release: patch for a compatible fix, minor for a backward-compatible feature or element, and major for an intentional breaking change.
+6. Update documentation when controls, behavior, compatibility, installation, or architecture changes.
+7. Validate proportionally to risk and report any unavailable checks honestly.
+8. Publish changes through a draft pull request unless the user explicitly requests another workflow. Do not merge, tag, create a GitHub release, or deploy to client sites without authorization.
+
+## Validation checklist
+
+- Run PHP syntax checks for every changed PHP file when PHP is available.
+- Confirm Twig tags and conditionals are balanced and property paths match registered controls/defaults.
+- Check CSS scoping, valid custom values, narrow-container behavior, and reduced-motion handling.
+- Exercise pointer, keyboard, and touch interactions when interaction behavior changes.
+- Verify front-end and Breakdance editor behavior when a suitable WordPress test site is available.
+- Build an installable ZIP whose top-level directory is `spry-breakdance-elements/`.
+- Test ZIP integrity and ensure development-only files, secrets, dependencies, and unrelated artifacts are excluded.
+- Confirm `plugin.php` version and the release changelog agree for a release build.
+
+## Definition of done
+
+A change is complete when its scope is implemented, backward compatibility has been considered, relevant checks pass (or limitations are stated), documentation and changelog are current, and the result is available as a reviewable repository change. For releases, also provide a verified installable ZIP.
+
+## Decision boundaries
+
+Ask before making a breaking change, renaming or removing controls or elements, adding runtime dependencies, changing licensing, enabling automatic updates, publishing a release, or altering repository visibility. Record durable decisions in `docs/PROJECT.md`.
