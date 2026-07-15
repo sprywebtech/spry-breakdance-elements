@@ -34,6 +34,17 @@ Current element:
 6. Backward-compatible updates for elements already used on client sites.
 7. Public code that is understandable, documented, and reusable.
 
+## Element naming convention
+
+Every element has a unique kebab-case slug that namespaces its front-end identifiers:
+
+- Breakdance root class: `swt-bde-<element-slug>`
+- Internal BEM classes: `swt-<element-slug>__<part>`
+
+For example, Flip Box uses `swt-bde-flip-box` and `swt-flip-box__stage`. A future Testimonial Slider would use `swt-bde-testimonial-slider`, `swt-testimonial-slider__slide`, and `swt-testimonial-slider__controls`.
+
+Use the same element slug in element-specific JavaScript identifiers, data attributes, hooks, and CSS custom properties when those are needed. Do not share a generic CSS prefix between different elements.
+
 ## Durable decisions
 
 - The repository and plugin are public and intended to be shareable.
