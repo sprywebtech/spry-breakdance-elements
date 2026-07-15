@@ -1,0 +1,183 @@
+%%SELECTOR%% {
+  display: block;
+  width: 100%;
+  max-width: {{ design.card.max_width.style }};
+  min-height: {{ design.card.min_height.style }};
+}
+
+%%SELECTOR%% .swt-flip-box__stage {
+  display: grid;
+  width: 100%;
+  min-height: inherit;
+  perspective: {{ design.motion.perspective }}px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+%%SELECTOR%% .swt-flip-box__inner {
+  display: grid;
+  width: 100%;
+  min-height: inherit;
+  transform-style: preserve-3d;
+  transition: transform {{ design.motion.duration }}ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  will-change: transform;
+}
+
+%%SELECTOR%% .swt-flip-box__face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: inherit;
+  padding: {{ design.card.padding.style }};
+  {{ macros.borders(design.card.borders) }}
+  gap: {{ design.card.gap.style }};
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  text-align: {{ design.card.text_align }};
+}
+
+%%SELECTOR%% .swt-flip-box__front {
+  background: {{ design.front.background }};
+  color: {{ design.front.text_color }};
+}
+
+%%SELECTOR%% .swt-flip-box__back {
+  background: {{ design.back.background }};
+  color: {{ design.back.text_color }};
+  {% if design.motion.direction == 'vertical' %}
+    transform: rotateX(180deg);
+  {% else %}
+    transform: rotateY(180deg);
+  {% endif %}
+}
+
+{% if design.motion.direction == 'vertical' %}
+  %%SELECTOR%% .swt-flip-box__stage:focus .swt-flip-box__inner,
+  %%SELECTOR%% .swt-flip-box__stage:focus-within .swt-flip-box__inner {
+    transform: rotateX(180deg);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    %%SELECTOR%% .swt-flip-box__stage:hover .swt-flip-box__inner {
+      transform: rotateX(180deg);
+    }
+  }
+{% else %}
+  %%SELECTOR%% .swt-flip-box__stage:focus .swt-flip-box__inner,
+  %%SELECTOR%% .swt-flip-box__stage:focus-within .swt-flip-box__inner {
+    transform: rotateY(180deg);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    %%SELECTOR%% .swt-flip-box__stage:hover .swt-flip-box__inner {
+      transform: rotateY(180deg);
+    }
+  }
+{% endif %}
+
+%%SELECTOR%% .swt-flip-box__stage:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 5px;
+}
+
+%%SELECTOR%% .swt-flip-box__eyebrow,
+%%SELECTOR%% .swt-flip-box__title,
+%%SELECTOR%% .swt-flip-box__text,
+%%SELECTOR%% .swt-flip-box__hint {
+  width: 100%;
+  margin: 0;
+}
+
+%%SELECTOR%% .swt-flip-box__eyebrow {
+  color: {{ design.front.eyebrow_color }};
+  font-size: {{ design.typography.eyebrow_size.style }};
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+%%SELECTOR%% .swt-flip-box__front .swt-flip-box__title {
+  color: {{ design.front.heading_color }};
+}
+
+%%SELECTOR%% .swt-flip-box__back .swt-flip-box__eyebrow {
+  color: {{ design.back.eyebrow_color }};
+}
+
+%%SELECTOR%% .swt-flip-box__back .swt-flip-box__title {
+  color: {{ design.back.heading_color }};
+}
+
+%%SELECTOR%% .swt-flip-box__title {
+  font-size: {{ design.typography.heading_size.style }};
+  font-weight: 700;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+%%SELECTOR%% .swt-flip-box__text {
+  font-size: {{ design.typography.text_size.style }};
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+%%SELECTOR%% .swt-flip-box__hint {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+%%SELECTOR%% .swt-flip-box__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: {% if design.card.text_align == 'left' %}flex-start{% elseif design.card.text_align == 'right' %}flex-end{% else %}center{% endif %};
+  width: fit-content;
+  margin-top: 6px;
+  padding: {{ design.button.padding_y.style }} {{ design.button.padding_x.style }};
+  border-radius: {{ design.button.radius.style }};
+  background: {{ design.button.background }};
+  color: {{ design.button.text_color }};
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  gap: 9px;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+%%SELECTOR%% .swt-flip-box__button:hover,
+%%SELECTOR%% .swt-flip-box__button:focus-visible {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+@media (max-width: 767px) {
+  %%SELECTOR%% {
+    max-width: 100%;
+  }
+
+  %%SELECTOR%% .swt-flip-box__face {
+    padding: min({{ design.card.padding.style }}, 7vw);
+  }
+
+  %%SELECTOR%% .swt-flip-box__title {
+    font-size: min({{ design.typography.heading_size.style }}, 8vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  %%SELECTOR%% .swt-flip-box__inner,
+  %%SELECTOR%% .swt-flip-box__button {
+    transition-duration: 0.01ms;
+  }
+}
